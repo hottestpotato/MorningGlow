@@ -122,9 +122,17 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok', message: 'Server is running' });
 });
 
+//const PORT = process.env.PORT || 3001;
+//app.listen(PORT, 'localhost', () => {
+//  console.log(`✅ Server listening on http://localhost:${PORT}`);
+//  console.log(`   POST /api/analyze - Bed image analysis endpoint`);
+//  console.log(`   GET /health - Health check`);
+//});
+
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, 'localhost', () => {
-  console.log(`✅ Server listening on http://localhost:${PORT}`);
-  console.log(`   POST /api/analyze - Bed image analysis endpoint`);
-  console.log(`   GET /health - Health check`);
+
+app.listen(PORT, () => {
+  console.log(`✅ Server listening on port ${PORT}`);
+  console.log(`--> POST /api/analyze - Bed image analysis endpoint`);
+  console.log(`--> GET  /health      - Health check`);
 });
