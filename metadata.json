@@ -1,0 +1,7 @@
+{
+  "name": "Morning Glow - Routine Coach",
+  "description": "A morning routine assistant that analyzes your bed-making skills using AI and tracks your daily habits.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
