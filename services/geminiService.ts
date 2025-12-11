@@ -4,6 +4,10 @@ import { BedAnalysisResult } from "../types";
  * Client-side wrapper that calls the backend `/api/analyze` endpoint.
  * The real GenAI call runs server-side so the API key stays secret.
  */
+// ✅ 공통 API 베이스 URL (환경변수 + 기본값)
+const API_BASE = import.meta.env.VITE_API_URL || "https://morningglow.onrender.com";
+
+
 export const analyzeBedImage = async (base64Image: string): Promise<BedAnalysisResult> => {
   try {
    // const resp = await fetch('/api/analyze', {
@@ -11,11 +15,13 @@ export const analyzeBedImage = async (base64Image: string): Promise<BedAnalysisR
    //   headers: { 'Content-Type': 'application/json' },
    //   body: JSON.stringify({ base64Image }),
    // });
-    const resp = await fetch('https://morningglow.onrender.com/api/analyze', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ base64Image }),
-    });  
+    const resp = await fetch(`${API_BASE}/api/analyze`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ base64Image }),
+      });
+
+
     if (!resp.ok) {
       const text = await resp.text();
       throw new Error(`Server error ${resp.status}: ${text}`);
