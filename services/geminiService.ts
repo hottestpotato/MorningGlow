@@ -6,12 +6,16 @@ import { BedAnalysisResult } from "../types";
  */
 export const analyzeBedImage = async (base64Image: string): Promise<BedAnalysisResult> => {
   try {
-    const resp = await fetch('/api/analyze', {
+   // const resp = await fetch('/api/analyze', {
+   //   method: 'POST',
+   //   headers: { 'Content-Type': 'application/json' },
+   //   body: JSON.stringify({ base64Image }),
+   // });
+    const resp = await fetch('https://morningglow.onrender.com/api/analyze', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ base64Image }),
-    });
-
+    });  
     if (!resp.ok) {
       const text = await resp.text();
       throw new Error(`Server error ${resp.status}: ${text}`);
